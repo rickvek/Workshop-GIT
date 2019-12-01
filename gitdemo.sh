@@ -15,6 +15,7 @@ Where() {
   set -v
   git log --graph
   set +v
+  read -p "Press enter to continue"
   clear
 }
 
@@ -44,7 +45,7 @@ git commit -m " ##  Starting"
 git status
 git log --oneline
 set +v
-read -p ""
+read -p "Press enter to continue"
 set -v
 git branch release
 git branch development
@@ -232,7 +233,9 @@ git status
 git diff
 echo "let's see what happens "  >> P2/P2_file.7
 git diff
+git status
 git add --all
+git status
 git commit -m "P2: Done for now"
 git status
 set +v
