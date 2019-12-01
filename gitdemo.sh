@@ -9,6 +9,14 @@ git init .
 ls -la
 set +v
 
+Where() {
+  read -p " ** Lets see where we are "
+  clear
+  set -v
+  git log --graph
+  set +v
+  clear
+}
 
 
 
@@ -30,10 +38,14 @@ git branch
 read -p " ** no master yet, so lets make one"
 set -v
 clear
+git branch
 git add --all
-git commit -m "Starting"
+git commit -m " ##  Starting"
 git status
-git log --oneline -5
+git log --oneline
+set +v
+read -p ""
+set -v
 git branch release
 git branch development
 git checkout development
@@ -52,7 +64,7 @@ git commit -m "NF: Start of New Feature"
 git status
 set +v
 
-read -p "Start of P1 "
+read -p " ** Start of P1 "
 clear
 set -v
 git branch P1
@@ -105,14 +117,9 @@ git commit -m "NF: first files NF"
 git status
 set +v
 
-read -p " ** Lets see where we are "
-clear
-set -v
-git log --graph
-set +v
+Where
 
 read -p " ** finishing P1"
-clear
 set -v
 git checkout development
 git merge P1
@@ -155,8 +162,9 @@ set +v
 read -p
 clear
 
+Where
+
 read -p " ** Lets do a hotfix"
-clear
 set -v
 git branch HF
 git checkout HF
@@ -193,13 +201,14 @@ set +v
 read -p
 clear
 
+Where
+
 read -p " **  Now we start second project  P2 "
-clear
 set -v
 git branch P2
 git checkout P2
 mkdir P2
-echo "starting P2 " >> README.md
+echo " ** start P2 " >> README.md
 git add --all
 git commit -m "P2: started"
 git status
@@ -228,15 +237,9 @@ git commit -m "P2: Done for now"
 git status
 set +v
 
-read -p " ** Lets see where we are "
-clear
-set -v
-git log --graph
-set +v
-
+Where
 
 read -p " ** last usage of NF"
-clear
 set -v
 git checkout NF
 count=30
@@ -253,14 +256,9 @@ git commit -m "NF: last files NF"
 git status
 set +v
 
-read -p " ** Lets see where we are "
-clear
-set -v
-git log --graph
-set +v
+Where
 
 read -p " **  now finish P2 "
-clear
 set -v
 git checkout development
 git merge P2
@@ -275,14 +273,9 @@ git tag "Release_v2.0"
 git tag
 set +v
 
-read -p " ** Lets see where we are "
-clear
-set -v
-git log --graph
-set +v
+Where
 
 read -p " ** Let's finish the new feature branch"
-clear
 set -v
 git checkout NF
 echo " ** NF: finished new features" >> README.md
@@ -295,7 +288,9 @@ read -p " ** lets release the last part "
 set -v
 git checkout development
 git status
+set +v
 read -p "check development status"
+set -v
 git merge NF
 git branch -d NF
 git checkout release
@@ -305,8 +300,6 @@ git tag "Release_v3.0"
 git tag
 set +v
 
-read -p " ** Lets see where we are "
-clear
-set -v
-git log --graph
-set +v
+Where
+
+echo  "  ####  THE END ###  "
