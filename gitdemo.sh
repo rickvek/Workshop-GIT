@@ -9,6 +9,9 @@ git init .
 ls -la
 set +v
 
+
+
+
 read -p " ** content empty repository, lets make .gitignore."
 clear
 set -v
@@ -43,7 +46,7 @@ set -v
 git branch NF
 git checkout NF
 mkdir NF
-echo "Start of New Feature"  >> README.md
+echo " ** Start of New Feature"  >> README.md
 git add --all
 git commit -m "NF: Start of New Feature"
 git status
@@ -166,7 +169,7 @@ while [ $count -lt 10 ]
   ((count++))
 done
 git status
-echo "HF:  done some fixes" >> README.md
+echo " ** HF:  done some fixes" >> README.md
 git add --all
 git commit -m "HF: finished a hot fix"
 git status
@@ -282,7 +285,7 @@ read -p " ** Let's finish the new feature branch"
 clear
 set -v
 git checkout NF
-echo "NF: finished new features" >> README.md
+echo " ** NF: finished new features" >> README.md
 git add --all
 git commit -m "NF:  finishing this, finally....."
 git status
