@@ -153,7 +153,7 @@ read -p " ** Lets prepare a release project P1"
 clear
 set -v
 git checkout release
-git merge development
+git merge development  --squash
 set +v
 read -p " ** set a tag "
 set -v
@@ -162,7 +162,6 @@ git tag
 set +v
 read -p
 clear
-
 Where
 
 read -p " ** Lets do a hotfix"
@@ -191,7 +190,7 @@ read -p " ** Lets prepare a release hot fix "
 clear
 set -v
 git checkout release
-git merge development
+git merge development  --squash
 set +v
 read -p " ** set a tag"
 clear
@@ -201,7 +200,6 @@ git tag
 set +v
 read -p
 clear
-
 Where
 
 read -p " **  Now we start second project  P2 "
@@ -267,7 +265,7 @@ git checkout development
 git merge P2
 git branch -d P2
 git checkout release
-git merge development
+git merge development   --squash
 set +v
 read -p " ** lets set a tag"
 clear
@@ -275,7 +273,6 @@ set -v
 git tag "Release_v2.0"
 git tag
 set +v
-
 Where
 
 read -p " ** Let's finish the new feature branch"
@@ -297,12 +294,11 @@ set -v
 git merge NF
 git branch -d NF
 git checkout release
-git merge development
+git merge development  --squash
 read -p " ** lets set a tag"
 git tag "Release_v3.0"
 git tag
 set +v
-
 Where
 
 echo  "  ####  THE END ###  "
