@@ -5,7 +5,7 @@ cd ~/Public/
 set -v
 mkdir gitdemo
 cd gitdemo
-git init .
+git init --bare .
 ls -la
 set +v
 
@@ -19,12 +19,19 @@ Where() {
   clear
 }
 
-
+MakeRelease() {
+  git checkout release
+  # we should do a rebase,  like a roll forwards. clean history.
+  # !!!  only to be used localy, for uploading a clean banch.
+  # git merge development
+  # use --continue  after resolving merge conflicts.
+  git rebase development  --verbose
+}
 
 read -p " ** content empty repository, lets make .gitignore."
 clear
 set -v
-cp ~/Documents/Presentations/GIT/.gitignore .
+cp ~/Documents/Presentations/MyPresentations/GIT/.gitignore .
 set +v
 read -p " ** lets view the contents"
 less .gitignore
@@ -152,8 +159,7 @@ set +v
 read -p " ** Lets prepare a release project P1"
 clear
 set -v
-git checkout release
-git merge development
+MakeRelease
 set +v
 read -p " ** set a tag "
 set -v
@@ -190,8 +196,7 @@ set +v
 read -p " ** Lets prepare a release hot fix "
 clear
 set -v
-git checkout release
-git merge development
+MakeRelease
 set +v
 read -p " ** set a tag"
 clear
@@ -266,8 +271,7 @@ set -v
 git checkout development
 git merge P2
 git branch -d P2
-git checkout release
-git merge development
+MakeRelease
 set +v
 read -p " ** lets set a tag"
 clear
@@ -293,12 +297,12 @@ git checkout development
 git status
 set +v
 read -p "check development status"
+read -p " ** lets set a tag"
 set -v
 git merge NF
 git branch -d NF
-git checkout release
-git merge development
-read -p " ** lets set a tag"
+read -p "Solve merge conflict first, in other screen, then continue. "
+MakeRelease
 git tag "Release_v3.0"
 git tag
 set +v
