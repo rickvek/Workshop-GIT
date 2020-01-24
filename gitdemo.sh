@@ -14,7 +14,7 @@ Where() {
   read -p " ** Lets see where we are "
   clear
   set -v
-  git log --graph
+  git log --oneline --graph
   set +v
   read -p "Press enter to continue"
   clear
@@ -44,7 +44,9 @@ ls -la  .git
 set +v
 read -p " ** content of git directory, lets see config."
 less .git/config
-git branch
+set -v
+git config
+set +v
 
 read -p " ** no master yet, so lets make one"
 set -v
@@ -61,16 +63,18 @@ git branch release
 git checkout release
 git branch development
 git checkout development
+git log --oneline
 git branch
 set  +v
 echo "Note: development branch is created from release"
 read -p " ** Start of NF"
 clear
+echo "Note:  we are on branch development"
 set -v
 git branch NF
 git checkout NF
 mkdir NF
-echo " ** Start of New Feature"  >> README.md
+echo " $(date +%D%T) ** Start of New Feature"  >> README.md
 git add --all
 git commit -m "NF: Start of New Feature"
 git status
@@ -82,7 +86,7 @@ set -v
 git checkout development
 git checkout -b P1
 mkdir P1
-echo " ** Start of P1" >> README.md
+echo "$(date +%D%T) ** Start of P1" >> README.md
 git add --all
 git commit -m "P1:  start of P1"
 git status
@@ -111,7 +115,7 @@ while [ $count -lt 10 ]
  ((count++))
 done
 git add --all
-git commit -m "P1: filing the files  "
+git commit -m "P1: filed the files  "
 git status
 set +v
 
@@ -146,18 +150,22 @@ set -v
 git log --graph
 set +v
 
-echo  work continues on NF
-read -p " **  We said you cannot commit to much ,  so we do it for every file "
+read -p  "work continues on NF"
 clear
+read -p " **  We said you cannot commit to much ,  so we do it for every file "
 set -v
 git checkout NF
 count=15
 while [ $count -lt 30 ]
  do echo "Some more work done" >> NF/NF_file.$count
- git add --all
+ set -v
+ git add NF/NF_file.$count
  git commit -m "NF: commit file NF_file.$count"
+ set +v
  (( count++ ))
 done
+echo "Now we done 30 changes and 30 commits"
+set -v
 git status
 set +v
 
@@ -187,12 +195,13 @@ while [ $count -lt 10 ]
   ((count++))
 done
 git status
-echo " ** HF:  done some fixes" >> README.md
+echo "$(date +%D%T) ** HF:  done some fixes" >> README.md
 git add --all
 git commit -m "HF: finished a hot fix"
 git status
 git checkout development
-git merge HF -m "Merge of HOTFIX"
+git merge HF -m "Merge of HOTF
+IX"
 git branch -d HF
 set +v
 
@@ -215,7 +224,7 @@ set -v
 git checkout development
 git checkout -b P2
 mkdir P2
-echo " ** start P2 " >> README.md
+echo "$(date +%D%T) ** start P2 " >> README.md
 git add --all
 git commit -m "P2: started"
 git status
@@ -287,7 +296,7 @@ Where
 read -p " ** Let's finish the new feature branch"
 set -v
 git checkout NF
-echo " ** NF: finished new features " >> README.md
+echo "$(date +%D%T) ** NF: finished new features " >> README.md
 git add --all
 git commit -m "NF:  finishing this, finally....."
 git status
@@ -299,7 +308,7 @@ git checkout development
 git status
 set +v
 read -p "check development status"
-git -v
+set -v
 git merge NF -m "Merge of New Feature"
 git branch -d NF
 set +v
