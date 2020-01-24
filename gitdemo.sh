@@ -161,14 +161,7 @@ set +v
 
 read -p " ** Lets prepare a release project P1"
 clear
-set -v
-<<<<<<< HEAD
-git checkout release
-git merge development  --squash
-=======
 MakeRelease
->>>>>>> DemoScript
-set +v
 read -p " ** set a tag "
 set -v
 git tag -a 1.0 -m "Release_v1.0"
@@ -202,13 +195,7 @@ set +v
 
 read -p " ** Lets prepare a release hot fix "
 clear
-set -v
-<<<<<<< HEAD
-git checkout release
-git merge development  --squash
-=======
 MakeRelease
->>>>>>> DemoScript
 set +v
 read -p " ** set a tag"
 clear
@@ -313,25 +300,10 @@ git checkout development
 git status
 set +v
 read -p "check development status"
-read -p " ** lets set a tag"
-set -v
 git merge NF
-<<<<<<< HEAD
 git branch -d NF
-git checkout release
-git merge development  --squash
-read -p " ** lets set a tag"
-git tag "Release_v3.0"
-=======
-# git branch -d NF
-read -p "
-
-        Solve merge conflict first, in other screen, then continue.
-
-        "
 MakeRelease
 git tag -a 3.0 -m "Release_v3.0"
->>>>>>> DemoScript
 git tag
 set +v
 Where
