@@ -267,15 +267,7 @@ Where
 read -p " **  now finish P2 "
 set -v
 git checkout development
-git merge P2
-<<<<<<< HEAD
-git branch -d P2
-git checkout release
-git merge development   --squash
-=======
-# git branch -d P2
 MakeRelease
->>>>>>> DemoScript
 set +v
 read -p " ** lets set a tag"
 clear
