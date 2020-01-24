@@ -2,6 +2,12 @@
 
 clear
 cd ~/Public/
+if [ -d gitdemo ]
+then
+    rm -rf gitdemo
+    echo "Cleaned up old demo"
+fi
+
 set -v
 mkdir gitdemo
 cd gitdemo
@@ -21,6 +27,7 @@ Where() {
 }
 
 MakeRelease() {
+  clear
   set -v
   git checkout release
   # we should do a rebase,  like a roll forwards. clean history.
@@ -28,6 +35,7 @@ MakeRelease() {
   # git merge development
   # use --continue  after resolving merge conflicts.
   git rebase development  --verbose
+  # git merge development
   set +v
 }
 
@@ -86,13 +94,13 @@ set -v
 git checkout development
 git checkout -b P1
 mkdir P1
-echo "$(date +%D%T) ** Start of P1" >> README.md
+echo "$(date +%D%T) ** Start of Project 1" >> README.md
 git add --all
 git commit -m "P1:  start of P1"
 git status
 set +v
 
-read -p " ** lets start with project P1"
+read -p " ** lets start with project Project 1"
 clear
 #git checkout P1
 count=1
@@ -169,7 +177,7 @@ set -v
 git status
 set +v
 
-read -p " ** Lets prepare a release project P1"
+read -p " ** Lets prepare a release project 1"
 clear
 MakeRelease
 read -p " ** set a tag "
@@ -195,7 +203,7 @@ while [ $count -lt 10 ]
   ((count++))
 done
 git status
-echo "$(date +%D%T) ** HF:  done some fixes" >> README.md
+echo "$(date +%D%T) ** HOTFIX:  done some fixes" >> README.md
 git add --all
 git commit -m "HF: finished a hot fix"
 git status
@@ -219,14 +227,14 @@ read -p
 clear
 Where
 
-read -p " **  Now we start second project  P2 "
+read -p " **  Now we start second project  Project 2 "
 set -v
 git checkout development
 git checkout -b P2
 mkdir P2
-echo "$(date +%D%T) ** start P2 " >> README.md
+echo "$(date +%D%T) ** start Project 2 " >> README.md
 git add --all
-git commit -m "P2: started"
+git commit -m "Project 2: started"
 git status
 set +v
 count=1
@@ -247,17 +255,17 @@ set -v
 git status
 git diff
 echo "let's see what happens "  >> P2/P2_file.7
+git commit -m "P2: Done for now"
 git diff
 git status
 git add --all
 git status
-git commit -m "P2: Done for now"
 git status
 set +v
 
 Where
 
-read -p " ** last usage of NF"
+read -p " ** last usage of New Feature"
 set -v
 git checkout NF
 count=30
@@ -270,13 +278,13 @@ while [ $count -lt 60 ]
 done
 git status
 git add --all
-git commit -m "NF: last files NF"
+git commit -m "New Feature: last files NF"
 git status
 set +v
 
 Where
 
-read -p " **  now finish P2 "
+read -p " **  now finish Project 2 "
 set -v
 git checkout development
 git merge P2 -m "Merging P2 into development"
@@ -296,9 +304,9 @@ Where
 read -p " ** Let's finish the new feature branch"
 set -v
 git checkout NF
-echo "$(date +%D%T) ** NF: finished new features " >> README.md
+echo "$(date +%D%T) ** New Feature: finished new features " >> README.md
 git add --all
-git commit -m "NF:  finishing this, finally....."
+git commit -m "New Feature:  finishing this, finally....."
 git status
 set +v
 
