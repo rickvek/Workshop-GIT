@@ -135,7 +135,7 @@ Where
 read -p " ** finishing P1"
 set -v
 git checkout development
-git merge P1
+git merge P1 -m "Merge of Project 1"
 git branch -d P1
 git branch
 set +v
@@ -192,7 +192,7 @@ git add --all
 git commit -m "HF: finished a hot fix"
 git status
 git checkout development
-git merge HF
+git merge HF -m "Merge of HOTFIX"
 git branch -d HF
 set +v
 
@@ -300,7 +300,7 @@ git status
 set +v
 read -p "check development status"
 git -v
-git merge NF
+git merge NF -m "Merge of New Feature"
 git branch -d NF
 set +v
 read -p "Check for merge conflict in other screen"
