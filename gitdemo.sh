@@ -28,7 +28,7 @@ MakeRelease() {
   # git merge development
   # use --continue  after resolving merge conflicts.
   git rebase development  --verbose
-  set +v 
+  set +v
 }
 
 read -p " ** content empty repository, lets make .gitignore."
@@ -58,11 +58,12 @@ set +v
 read -p "Press enter to continue"
 set -v
 git branch release
+git checkout release
 git branch development
 git checkout development
 git branch
 set  +v
-
+echo "Note: development branch is created from release"
 read -p " ** Start of NF"
 clear
 set -v
@@ -78,8 +79,8 @@ set +v
 read -p " ** Start of P1 "
 clear
 set -v
-git branch P1
-git checkout  P1
+git checkout development
+git checkout -b P1
 mkdir P1
 echo " ** Start of P1" >> README.md
 git add --all
@@ -89,7 +90,7 @@ set +v
 
 read -p " ** lets start with project P1"
 clear
-git checkout P1
+#git checkout P1
 count=1
 while [ $count -lt 10 ]
  do touch P1/P1_file.$count
@@ -114,6 +115,7 @@ git commit -m "P1: filing the files  "
 git status
 set +v
 
+#some work on New Feature
 read -p " ** in the mean time New Feature sprint has started."
 clear
 set -v
@@ -129,12 +131,12 @@ git status
 set +v
 
 Where
-
+#back to Project 1, ending, merging, cleaning up
 read -p " ** finishing P1"
 set -v
 git checkout development
 git merge P1
-# git branch -d P1
+git branch -d P1
 git branch
 set +v
 
@@ -173,6 +175,7 @@ Where
 
 read -p " ** Lets do a hotfix"
 set -v
+git checkout development
 git branch HF
 git checkout HF
 count=5
@@ -190,7 +193,7 @@ git commit -m "HF: finished a hot fix"
 git status
 git checkout development
 git merge HF
-# git branch -d HF
+git branch -d HF
 set +v
 
 read -p " ** Lets prepare a release hot fix "
@@ -209,8 +212,8 @@ Where
 
 read -p " **  Now we start second project  P2 "
 set -v
-git branch P2
-git checkout P2
+git checkout development
+git checkout -b P2
 mkdir P2
 echo " ** start P2 " >> README.md
 git add --all
@@ -267,6 +270,10 @@ Where
 read -p " **  now finish P2 "
 set -v
 git checkout development
+git merge P2 -m "Merging P2 into development"
+git branch -d P2
+set +v
+read -p "Check for merge conflict in other screen"
 MakeRelease
 set +v
 read -p " ** lets set a tag"
@@ -292,8 +299,11 @@ git checkout development
 git status
 set +v
 read -p "check development status"
+git -v
 git merge NF
 git branch -d NF
+set +v
+read -p "Check for merge conflict in other screen"
 MakeRelease
 git tag -a 3.0 -m "Release_v3.0"
 git tag
