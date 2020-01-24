@@ -21,12 +21,14 @@ Where() {
 }
 
 MakeRelease() {
+  set -v
   git checkout release
   # we should do a rebase,  like a roll forwards. clean history.
   # !!!  only to be used localy, for uploading a clean banch.
   # git merge development
   # use --continue  after resolving merge conflicts.
   git rebase development  --verbose
+  set +v 
 }
 
 read -p " ** content empty repository, lets make .gitignore."
