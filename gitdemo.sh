@@ -5,7 +5,8 @@ cd ~/Public/
 set -v
 mkdir gitdemo
 cd gitdemo
-git init .
+# git init --bare .
+git init  .
 ls -la
 set +v
 
@@ -19,12 +20,21 @@ Where() {
   clear
 }
 
-
+MakeRelease() {
+  set -v
+  git checkout release
+  # we should do a rebase,  like a roll forwards. clean history.
+  # !!!  only to be used localy, for uploading a clean banch.
+  # git merge development
+  # use --continue  after resolving merge conflicts.
+  git rebase development  --verbose
+  set +v 
+}
 
 read -p " ** content empty repository, lets make .gitignore."
 clear
 set -v
-cp ~/Documents/Presentations/GIT/.gitignore .
+cp ~/Documents/Presentations/MyPresentations/GIT/.gitignore .
 set +v
 read -p " ** lets view the contents"
 less .gitignore
@@ -124,7 +134,7 @@ read -p " ** finishing P1"
 set -v
 git checkout development
 git merge P1
-git branch -d P1
+# git branch -d P1
 git branch
 set +v
 
@@ -152,12 +162,16 @@ set +v
 read -p " ** Lets prepare a release project P1"
 clear
 set -v
+<<<<<<< HEAD
 git checkout release
 git merge development  --squash
+=======
+MakeRelease
+>>>>>>> DemoScript
 set +v
 read -p " ** set a tag "
 set -v
-git tag "Release_v1.0"
+git tag -a 1.0 -m "Release_v1.0"
 git tag
 set +v
 read -p
@@ -183,19 +197,23 @@ git commit -m "HF: finished a hot fix"
 git status
 git checkout development
 git merge HF
-git branch -d HF
+# git branch -d HF
 set +v
 
 read -p " ** Lets prepare a release hot fix "
 clear
 set -v
+<<<<<<< HEAD
 git checkout release
 git merge development  --squash
+=======
+MakeRelease
+>>>>>>> DemoScript
 set +v
 read -p " ** set a tag"
 clear
 set -v
-git tag "Release_v1.1"
+git tag -a 1.1 -m "Release_v1.1"
 git tag
 set +v
 read -p
@@ -263,14 +281,19 @@ read -p " **  now finish P2 "
 set -v
 git checkout development
 git merge P2
+<<<<<<< HEAD
 git branch -d P2
 git checkout release
 git merge development   --squash
+=======
+# git branch -d P2
+MakeRelease
+>>>>>>> DemoScript
 set +v
 read -p " ** lets set a tag"
 clear
 set -v
-git tag "Release_v2.0"
+git tag -a 2.0 -m  "Release_v2.0"
 git tag
 set +v
 Where
@@ -278,7 +301,7 @@ Where
 read -p " ** Let's finish the new feature branch"
 set -v
 git checkout NF
-echo " ** NF: finished new features" >> README.md
+echo " ** NF: finished new features " >> README.md
 git add --all
 git commit -m "NF:  finishing this, finally....."
 git status
@@ -290,13 +313,25 @@ git checkout development
 git status
 set +v
 read -p "check development status"
+read -p " ** lets set a tag"
 set -v
 git merge NF
+<<<<<<< HEAD
 git branch -d NF
 git checkout release
 git merge development  --squash
 read -p " ** lets set a tag"
 git tag "Release_v3.0"
+=======
+# git branch -d NF
+read -p "
+
+        Solve merge conflict first, in other screen, then continue.
+
+        "
+MakeRelease
+git tag -a 3.0 -m "Release_v3.0"
+>>>>>>> DemoScript
 git tag
 set +v
 Where
