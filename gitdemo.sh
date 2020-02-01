@@ -50,10 +50,11 @@ clear
 set -v
 ls -la  .git
 set +v
-read -p " ** content of git directory, lets see config."
+read -p " ** content of git directory, lets see config local/global."
 less .git/config
 set -v
-git config
+git config --list
+# git config --global --list
 set +v
 
 read -p " ** no master yet, so lets make one"
