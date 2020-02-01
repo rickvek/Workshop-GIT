@@ -182,7 +182,7 @@ clear
 MakeRelease
 read -p " ** set a tag "
 set -v
-git tag -a 1.0 -m "Release_v1.0"
+git tag -a 1.0 -m "Demo_Rel_v1.0"
 git tag
 set +v
 read -p
@@ -220,7 +220,7 @@ set +v
 read -p " ** set a tag"
 clear
 set -v
-git tag -a 1.1 -m "Release_v1.1"
+git tag -a 1.1 -m "Demo_Rel_v1.1"
 git tag
 set +v
 read -p
@@ -296,7 +296,7 @@ set +v
 read -p " ** lets set a tag"
 clear
 set -v
-git tag -a 2.0 -m  "Release_v2.0"
+git tag -a 2.0 -m  "Demo_Rel_v2.0"
 git tag
 set +v
 Where
@@ -322,7 +322,7 @@ git branch -d NF
 set +v
 read -p "Check for merge conflict in other screen"
 MakeRelease
-git tag -a 3.0 -m "Release_v3.0"
+git tag -a 3.0 -m "Demo_Rel_v3.0"
 git tag
 set +v
 Where
