@@ -1,3 +1,4 @@
+
 # Logs
 *.log
 *.tmp
@@ -23,3 +24,5 @@ Thumbs.db
 *.swp
 *.swo
 
+#lock files OpenOffice
+.~lock.*
