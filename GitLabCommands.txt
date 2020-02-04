@@ -1,0 +1,91 @@
+
+
+ [lab] git clone git@github.com:rickvek/Lab_workshop.git
+ [lab]$ cd Lab_workshop/
+ [Lab_workshop]$ git checkout -b Release
+ [Lab_workshop]$ git checkout -b Development
+ [Lab_workshop]$ git checkout -b Proj1
+ [Lab_workshop]$ git branch
+ [Lab_workshop]$ for no in 1 2 3 4 5 6 7 8 9 10
+  do
+   echo file${no} >> file${no}.txt
+  done
+ [Lab_workshop]$ ll
+ [Lab_workshop]$ git add file*.txt
+ [Lab_workshop]$ git commit -m "Added filesXX.txt"
+
+
+ [Lab_workshop]$ git checkout Development
+ [Lab_workshop]$ git checkout -b Proj2
+ [Lab_workshop]$ for no in 1 2 3 4 5 6 7 8 9
+  do
+   echo Proj2_file${no}.txt >> Proj2_file${no}.txt
+  done
+ [Lab_workshop]$ ll
+ [Lab_workshop]$ git add Proj*
+ [Lab_workshop]$ git commit -m "Added Proj2 files"
+ [Lab_workshop]$ git checkout Development
+ [Lab_workshop]$ git merge Proj2
+
+
+ [Lab_workshop]$ git log --oneline --graph
+ [Lab_workshop]$ git checkout Release
+ [Lab_workshop]$ git checkout -b HF
+ [Lab_workshop]$ for no in 1 2 3 4 5 6 7 8 9
+  do
+  echo HF_file${no}.txt  >> HF_file${no}.txt
+  done
+ [Lab_workshop]$ git add HF*
+ [Lab_workshop]$ git commit -m "Hot Fix done"
+ [Lab_workshop]$ git checkout  Release
+ [Lab_workshop]$ git merge HF
+ [Lab_workshop]$ git branch -d HF
+
+
+ [Lab_workshop]$ git checkout Development
+ [Lab_workshop]$
+ [Lab_workshop]$ git checkout -b  Proj3
+ [Lab_workshop]$ for no in 1 2 3 4 5 6 7 8
+  do
+    echo Proj3_file${no}.txt >> Proj3_file${no}.txt
+  done
+ [Lab_workshop]$ git add Proj*
+ [Lab_workshop]$ git commit -m "added Proj3 file "
+ [Lab_workshop]$ git checkout Development
+ [Lab_workshop]$ git merge Proj3
+ [Lab_workshop]$ git branch -d Proj3
+
+
+ [Lab_workshop]$ git checkout Proj1
+ [Lab_workshop]$ ls
+ [Lab_workshop]$ for no in 1 2 3 4 5 6 7 8 9
+  do
+   echo Proj1_file${no}.txt  >>  Proj1_file${no}.txt
+  done
+ [Lab_workshop]$ git add Proj1_file*
+ [Lab_workshop]$ git commit -m "added Project1 files"
+ [Lab_workshop]$ git checkout Development
+ [Lab_workshop]$ git merge Proj1
+ [Lab_workshop]$ git branch -d Proj1
+
+
+ [Lab_workshop]$ git checkout Release
+ [Lab_workshop]$ git rebase Development
+ [Lab_workshop]$ git merge  Development
+
+ [Lab_workshop]$ git push origin Release
+  Tunnel device open failed.
+  Could not request tunnel forwarding.
+  Enumerating objects: 58, done.
+  Counting objects: 100% (58/58), done.
+  Delta compression using up to 4 threads
+  Compressing objects: 100% (12/12), done.
+  Writing objects: 100% (57/57), 3.25 KiB | 302.00 KiB/s, done.
+  Total 57 (delta 6), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (6/6), done.
+  remote:
+  remote: Create a pull request for 'Release' on GitHub by visiting:
+  remote:      https://github.com/rickvek/Lab_workshop/pull/new/Release
+  remote:
+  To github.com:rickvek/Lab_workshop.git
+   * [new branch]      Release -> Release
