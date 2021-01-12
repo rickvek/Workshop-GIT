@@ -165,7 +165,7 @@ read -p " **  We said you cannot commit to much ,  so we do it for every file "
 set -v
 git checkout NF
 count=15
-while [ $count -lt 30 ]
+while [ $count -lt 31 ]
  do echo "Some more work done" >> NF/NF_file.$count
  set -v
  git add NF/NF_file.$count
@@ -270,7 +270,7 @@ read -p " ** last usage of New Feature"
 set -v
 git checkout NF
 count=30
-while [ $count -lt 60 ]
+while [ $count -lt 61 ]
  do
   echo "pff almost there" >> NF/NF_file.$count
   git add --all
